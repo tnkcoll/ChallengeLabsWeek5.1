@@ -4,8 +4,29 @@
     {
         static void Main(string[] args)
         {
-            int[] ints = { 2, 2, 1, 1, 5, 5, 7, 8, 8, 9, 9 };
+            int[] ints =GetArrayOfIntsFromUser("Please enter a number that only has one non-repeating digit. Ex: 22113");
             Console.WriteLine(GetSingleUseDigit(ints));
+        }
+
+        static int[] GetArrayOfIntsFromUser(string s)
+        {
+            string? userInput = "";
+
+            do
+            {
+                Console.WriteLine(s);
+                userInput = Console.ReadLine();
+            } while (userInput == "");
+
+            int[] ints = new int[userInput.Length];
+
+            for (int i = 0; i < userInput.Length; i++)
+            {
+                double num = char.GetNumericValue(userInput[i]);
+                ints[i] = Convert.ToInt32(num);
+            }
+
+            return ints;
         }
 
         static int GetSingleUseDigit(int[] ints)
